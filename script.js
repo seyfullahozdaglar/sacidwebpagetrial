@@ -102,34 +102,110 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Form submission
-const contactForm = document.querySelector('.contact-form');
+// Form submission with EmailJS
+const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         // Get form data
-        const name = this.querySelector('input[type="text"]').value;
-        const email = this.querySelector('input[type="email"]').value;
-        const service = this.querySelector('select').value;
+        const name = this.querySelector('input[name="from_name"]').value;
+        const email = this.querySelector('input[name="from_email"]').value;
+        const service = this.querySelector('select[name="service"]').value;
+        const message = this.querySelector('textarea[name="message"]').value;
+        const phone = this.querySelector('input[name="phone"]').value;
+        const submitButton = this.querySelector('button[type="submit"]');
+        const formMessage = document.getElementById('formMessage');
         
         // Basic validation
-        if (!name || !email || !service) {
+        if (!name || !email || !service || !message) {
             const errorMsg = currentLanguage === 'tr' 
                 ? 'Lütfen gerekli alanları doldurunuz.' 
                 : 'Please fill in all required fields.';
-            alert(errorMsg);
+            showFormMessage(formMessage, errorMsg, 'error');
             return;
         }
         
-        // Success message
-        const successMsg = currentLanguage === 'tr'
-            ? 'Mesajınız gönderildi! En kısa sürede sizinle iletişime geçeceğiz.'
-            : 'Your message has been sent! We will contact you as soon as possible.';
+        // Show loading state
+        submitButton.disabled = true;
+        const originalText = submitButton.textContent;
+        submitButton.textContent = currentLanguage === 'tr' ? 'Gönderiliyor...' : 'Sending...';
         
-        alert(successMsg);
-        this.reset();
+        try {
+            // Prepare template parameters
+            const templateParams = {
+                from_name: name,
+                from_email: email,
+                phone: phone || 'Belirtilmemiş / Not provided',
+                service: getServiceName(service, currentLanguage),
+                message: message,
+                to_email: 'sacidozdaglar@gmail.com' // Change this to your actual email
+            };
+            
+            console.log('Sending email with params:', templateParams);
+            
+            // Send email using EmailJS - REPLACE THESE WITH YOUR ACTUAL IDs
+            const response = await emailjs.send(
+                'service_nt3oikp',    // Replace with your EmailJS service ID
+                'template_gba5ddn',   // Replace with your EmailJS template ID
+                templateParams
+            );
+            
+            console.log('EmailJS response:', response);
+            
+            if (response.status === 200) {
+                // Success message
+                const successMsg = currentLanguage === 'tr'
+                    ? 'Mesajınız başarıyla gönderildi! En kısa sürede sizinle iletişime geçeceğiz.'
+                    : 'Your message has been sent successfully! We will contact you as soon as possible.';
+                showFormMessage(formMessage, successMsg, 'success');
+                this.reset();
+            } else {
+                throw new Error('Email sending failed with status: ' + response.status);
+            }
+        } catch (error) {
+            console.error('EmailJS Error:', error);
+            // Error message
+            const errorMsg = currentLanguage === 'tr'
+                ? 'Mesajınız gönderilirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.'
+                : 'An error occurred while sending your message. Please try again later.';
+            showFormMessage(formMessage, errorMsg, 'error');
+        } finally {
+            // Reset button state
+            submitButton.disabled = false;
+            submitButton.textContent = originalText;
+        }
     });
+}
+
+// Helper function to get service name in current language
+function getServiceName(serviceValue, language) {
+    const serviceNames = {
+        'kira-hukuku': { tr: 'Kira Hukuku', en: 'Rental Law' },
+        'sirketler-hukuku': { tr: 'Şirketler Hukuku', en: 'Corporate Law' },
+        'is-hukuku': { tr: 'İş Hukuku', en: 'Labor Law' },
+        'ceza-hukuku': { tr: 'Ceza Hukuku', en: 'Criminal Law' },
+        'tuketici-hukuku': { tr: 'Tüketici Hukuku', en: 'Consumer Law' },
+        'sigorta-hukuku': { tr: 'Sigorta Hukuku', en: 'Insurance Law' },
+        'aile-hukuku': { tr: 'Aile Hukuku', en: 'Family Law' },
+        'icra-hukuku': { tr: 'İcra Hukuku', en: 'Enforcement Law' },
+        'ticaret-hukuku': { tr: 'Ticaret Hukuku', en: 'Commercial Law' },
+        'diger': { tr: 'Diğer', en: 'Other' }
+    };
+    
+    return serviceNames[serviceValue] ? serviceNames[serviceValue][language] : serviceValue;
+}
+
+// Show form message
+function showFormMessage(element, message, type) {
+    element.textContent = message;
+    element.className = `form-message ${type}`;
+    element.style.display = 'block';
+    
+    // Hide message after 5 seconds
+    setTimeout(() => {
+        element.style.display = 'none';
+    }, 5000);
 }
 
 // Sticky navigation
