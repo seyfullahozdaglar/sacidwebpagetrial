@@ -824,3 +824,26 @@ footer p {
     font-size: 1.2rem;
     grid-column: 1 / -1;
 }
+
+/* Add to existing CSS - Blog category styles */
+.blog-category {
+    background: #1E4E6C;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.blog-post-category {
+    background: #C89B3C;
+    color: #0A1A2F;
+    padding: 6px 15px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 15px;
+}
