@@ -3,15 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Av. Sacid Özdağlar - İzmir Hukuk Bürosu</title>
+    <title>Av. Mehmet Yılmaz - İzmir Hukuk Bürosu</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Add EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // Initialize EmailJS with your public key - REPLACE THIS WITH YOUR PUBLIC KEY
+            emailjs.init("_Sq0u-Sas5nMYtroJ");
+        })();
+    </script>
 </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="nav-container">
                 <div class="logo">
-                    <h2 data-tr="Av. Sacid Özdağlar" data-en="Lawyer Sacid Özdağlar">Av. Sacid Özdağlar</h2>
+                    <h2 data-tr="Av. Mehmet Yılmaz" data-en="Lawyer Mehmet Yılmaz">Av. Mehmet Yılmaz</h2>
                 </div>
                 <ul class="nav-menu">
                     <li><a href="#home" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a></li>
@@ -46,8 +54,8 @@
             <h2 data-tr="Hakkımda" data-en="About Me">Hakkımda</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <h3 data-tr="Av. Sacid Özdağlar" data-en="Lawyer Sacid Özdağlar">Av. Sacid Özdağlar</h3>
-                    <p data-tr="İzmir Dokuz Eylül Üniversitesi Hukuk Fakültesi'nden mezun olan Av. Sacid Özdağlar, kira hukuku başta olmak üzere birçok hukuk dalında uzmanlaşmıştır. Müvekkillerine kapsamlı hukuk danışmanlığı sunmaktadır." data-en="Graduated from Izmir Dokuz Eylul University Faculty of Law, Lawyer Sacid Özdağlar specializes in multiple legal fields, primarily rental law. He provides comprehensive legal consulting to his clients.">İzmir Dokuz Eylül Üniversitesi Hukuk Fakültesi'nden mezun olan Av. Sacid Özdağlar, kira hukuku başta olmak üzere birçok hukuk dalında uzmanlaşmıştır. Müvekkillerine kapsamlı hukuk danışmanlığı sunmaktadır.</p>
+                    <h3 data-tr="Av. Mehmet Yılmaz" data-en="Lawyer Mehmet Yılmaz">Av. Mehmet Yılmaz</h3>
+                    <p data-tr="İzmir Dokuz Eylül Üniversitesi Hukuk Fakültesi'nden mezun olan Av. Mehmet Yılmaz, kira hukuku başta olmak üzere birçok hukuk dalında uzmanlaşmıştır. Müvekkillerine kapsamlı hukuk danışmanlığı sunmaktadır." data-en="Graduated from Izmir Dokuz Eylul University Faculty of Law, Lawyer Mehmet Yılmaz specializes in multiple legal fields, primarily rental law. He provides comprehensive legal consulting to his clients.">İzmir Dokuz Eylül Üniversitesi Hukuk Fakültesi'nden mezun olan Av. Mehmet Yılmaz, kira hukuku başta olmak üzere birçok hukuk dalında uzmanlaşmıştır. Müvekkillerine kapsamlı hukuk danışmanlığı sunmaktadır.</p>
                     <div class="education">
                         <h4 data-tr="Eğitim" data-en="Education">Eğitim</h4>
                         <p data-tr="İzmir Dokuz Eylül Üniversitesi - Hukuk Fakültesi" data-en="Izmir Dokuz Eylul University - Faculty of Law">İzmir Dokuz Eylül Üniversitesi - Hukuk Fakültesi</p>
@@ -114,18 +122,18 @@
                     <h3 data-tr="İletişim Bilgileri" data-en="Contact Information">İletişim Bilgileri</h3>
                     <p>📍 <span data-tr="Alsancak, İzmir, Türkiye" data-en="Alsancak, Izmir, Turkey">Alsancak, İzmir, Türkiye</span></p>
                     <p>📞 +90 555 123 45 67</p>
-                    <p>✉️ av.mehmetyilmaz@example.com</p>
+                    <p>✉️ sacidozdaglar@gmail.com</p>
                     <div class="work-hours">
                         <h4 data-tr="Çalışma Saatleri" data-en="Working Hours">Çalışma Saatleri</h4>
                         <p data-tr="Pazartesi - Cuma: 09:00 - 18:00" data-en="Monday - Friday: 09:00 - 18:00">Pazartesi - Cuma: 09:00 - 18:00</p>
                         <p data-tr="Cumartesi: 10:00 - 14:00" data-en="Saturday: 10:00 - 14:00">Cumartesi: 10:00 - 14:00</p>
                     </div>
                 </div>
-                <form class="contact-form">
-                    <input type="text" placeholder="Adınız Soyadınız" required data-tr-placeholder="Adınız Soyadınız" data-en-placeholder="Your Full Name">
-                    <input type="email" placeholder="E-posta Adresiniz" required data-tr-placeholder="E-posta Adresiniz" data-en-placeholder="Your Email Address">
-                    <input type="tel" placeholder="Telefon Numaranız" data-tr-placeholder="Telefon Numaranız" data-en-placeholder="Your Phone Number">
-                    <select required>
+                <form class="contact-form" id="contactForm">
+                    <input type="text" name="from_name" placeholder="Adınız Soyadınız" required data-tr-placeholder="Adınız Soyadınız" data-en-placeholder="Your Full Name">
+                    <input type="email" name="from_email" placeholder="E-posta Adresiniz" required data-tr-placeholder="E-posta Adresiniz" data-en-placeholder="Your Email Address">
+                    <input type="tel" name="phone" placeholder="Telefon Numaranız" data-tr-placeholder="Telefon Numaranız" data-en-placeholder="Your Phone Number">
+                    <select name="service" required>
                         <option value="" data-tr="Hizmet Türü Seçiniz" data-en="Select Service Type">Hizmet Türü Seçiniz</option>
                         <option value="kira-hukuku" data-tr="Kira Hukuku" data-en="Rental Law">Kira Hukuku</option>
                         <option value="sirketler-hukuku" data-tr="Şirketler Hukuku" data-en="Corporate Law">Şirketler Hukuku</option>
@@ -138,8 +146,9 @@
                         <option value="ticaret-hukuku" data-tr="Ticaret Hukuku" data-en="Commercial Law">Ticaret Hukuku</option>
                         <option value="diger" data-tr="Diğer" data-en="Other">Diğer</option>
                     </select>
-                    <textarea placeholder="Mesajınız" required data-tr-placeholder="Mesajınız" data-en-placeholder="Your Message"></textarea>
+                    <textarea name="message" placeholder="Mesajınız" required data-tr-placeholder="Mesajınız" data-en-placeholder="Your Message"></textarea>
                     <button type="submit" data-tr="Gönder" data-en="Send">Gönder</button>
+                    <div id="formMessage" class="form-message"></div>
                 </form>
             </div>
         </div>
@@ -147,7 +156,7 @@
 
     <footer>
         <div class="container">
-            <p data-tr="&copy; 2024 Av. Sacid Özdağlar. Tüm hakları saklıdır." data-en="&copy; 2024 Lawyer Sacid Özdağlar. All rights reserved.">&copy; 2024 Av. Sacid Özdağlar. Tüm hakları saklıdır.</p>
+            <p data-tr="&copy; 2024 Av. Mehmet Yılmaz. Tüm hakları saklıdır." data-en="&copy; 2024 Lawyer Mehmet Yılmaz. All rights reserved.">&copy; 2024 Av. Mehmet Yılmaz. Tüm hakları saklıdır.</p>
             <p class="disclaimer" data-tr="Bu sitede yer alan bilgiler hukuki danışmanlık kapsamında değildir." data-en="The information on this site is not within the scope of legal advice.">Bu sitede yer alan bilgiler hukuki danışmanlık kapsamında değildir.</p>
         </div>
     </footer>
