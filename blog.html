@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-tr="Hukuk Blogu - Av. Mehmet Yılmaz" data-en="Law Blog - Lawyer Mehmet Yılmaz">Hukuk Blogu - Av. Mehmet Yılmaz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <h2 data-tr="Av. Mehmet Yılmaz" data-en="Lawyer Mehmet Yılmaz">Av. Mehmet Yılmaz</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a></li>
+                    <li><a href="index.html#about" data-tr="Hakkımda" data-en="About">Hakkımda</a></li>
+                    <li><a href="index.html#services" data-tr="Hizmetler" data-en="Services">Hizmetler</a></li>
+                    <li><a href="blog.html" data-tr="Blog & Haberler" data-en="Blog & News">Blog & Haberler</a></li>
+                    <li><a href="index.html#contact" data-tr="İletişim" data-en="Contact">İletişim</a></li>
+                </ul>
+                <div class="language-switcher">
+                    <button class="lang-btn active" data-lang="tr">TR</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="blog-hero">
+        <div class="container">
+            <h1 data-tr="Hukuk Blogu & Haberler" data-en="Law Blog & News">Hukuk Blogu & Haberler</h1>
+            <p data-tr="Kira hukuku, yasal değişiklikler ve güncel gelişmeler hakkında bilgiler" data-en="Information about rental law, legal changes and current developments">Kira hukuku, yasal değişiklikler ve güncel gelişmeler hakkında bilgiler</p>
+        </div>
+    </section>
+
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Makalelerde ara..." data-tr-placeholder="Makalelerde ara..." data-en-placeholder="Search in articles...">
+            <button id="searchButton" data-tr="Ara" data-en="Search">Ara</button>
+        </div>
+        <div id="searchResults" class="search-results"></div>
+    </div>
+
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-grid" id="blogGrid">
+                <!-- Blog posts will be dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Post Modal -->
+    <div id="blogModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div id="modalContent">
+                <!-- Blog post content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p data-tr="&copy; 2024 Av. Mehmet Yılmaz. Tüm hakları saklıdır." data-en="&copy; 2024 Lawyer Mehmet Yılmaz. All rights reserved.">&copy; 2024 Av. Mehmet Yılmaz. Tüm hakları saklıdır.</p>
+            <p class="disclaimer" data-tr="Bu sitede yer alan bilgiler hukuki danışmanlık kapsamında değildir." data-en="The information on this site is not within the scope of legal advice.">Bu sitede yer alan bilgiler hukuki danışmanlık kapsamında değildir.</p>
+        </div>
+    </footer>
+
+    <!-- Load scripts in correct order -->
+    <script src="blog-data.js"></script>
+    <script src="script.js"></script>
+    <script src="blog.js"></script>
+</body>
+</html>
