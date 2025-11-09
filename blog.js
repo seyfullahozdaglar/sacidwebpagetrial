@@ -44,6 +44,7 @@ function initBlog() {
                     <span>⚖️</span>
                 </div>
                 <div class="blog-content">
+                    <div class="blog-category">${post.category[currentLanguage]}</div>
                     <div class="blog-date">${post.date}</div>
                     <h3 class="blog-title">${post.title[currentLanguage]}</h3>
                     <p class="blog-excerpt">${post.excerpt[currentLanguage]}</p>
@@ -75,6 +76,7 @@ function initBlog() {
         modalContent.innerHTML = `
             <div class="blog-post-content">
                 <div class="blog-post-header">
+                    <div class="blog-post-category">${post.category[currentLanguage]}</div>
                     <h2 class="blog-post-title">${post.title[currentLanguage]}</h2>
                     <div class="blog-post-meta">
                         <div class="blog-post-date">${post.date}</div>
@@ -112,11 +114,13 @@ function initBlog() {
             const title = post.title[currentLanguage].toLowerCase();
             const excerpt = post.excerpt[currentLanguage].toLowerCase();
             const content = post.content[currentLanguage].toLowerCase();
+            const category = post.category[currentLanguage].toLowerCase();
             const tags = post.tags[currentLanguage].join(' ').toLowerCase();
 
             return title.includes(searchTerm) || 
                    excerpt.includes(searchTerm) || 
                    content.includes(searchTerm) ||
+                   category.includes(searchTerm) ||
                    tags.includes(searchTerm);
         });
 
